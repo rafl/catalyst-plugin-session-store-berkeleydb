@@ -1,3 +1,7 @@
+0.03 Fri Oct  9 00:37:22 CEST 2009
+      - Port to new session config key
+      - do all database reads/writes in a txn; fixes bug on 5.8.9/centos
+
 0.02 Mon Feb  2 11:24:32 CST 2009
       - unfuck apps where the session store is loaded
         before the session state plugin (rafl)
