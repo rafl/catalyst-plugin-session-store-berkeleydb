@@ -25,14 +25,14 @@ __PACKAGE__->mk_classdata($_db);
 sub setup_session {
     my $app = shift;
 
-    my $manager = delete $app->config->{session}{manager} || +{
+    my $manager = delete $app->_session_plugin_config->{manager} || +{
         home => Path::Class::Dir->new(
             Catalyst::Utils::class2tempdir($app), 'sessions',
         ),
         create => 1,
     };
 
-    my $db = delete $app->config->{session}{database} || 'catalyst_sessions';
+    my $db = delete $app->_session_plugin_config->{database} || 'catalyst_sessions';
 
     if(!blessed $manager){
         $manager = BerkeleyDB::Manager->new( $manager );
@@ -144,7 +144,7 @@ module will create a Berkeley database called "catalyst_sessions" in a
 directory called "sessions" in your app's temp directory.
 
 You can customize this, though, by setting the values of the "manager"
-and "database" keys in C<< $c->config->{session} >>.
+and "database" keys in C<< $c->config->{'Plugin::Session'} >>.
 
 The C<manager> key can be either an instance of C<BerkeleyDB::Manager>, or
 it can be a hash to pass to the constructor of C<BerkeleyDB::Manager>.  (Or
