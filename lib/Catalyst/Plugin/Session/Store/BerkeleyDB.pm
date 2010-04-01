@@ -12,7 +12,7 @@ use Carp qw(confess);
 
 use namespace::clean;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 use base 'Class::Data::Inheritable', 'Catalyst::Plugin::Session::Store';
 
