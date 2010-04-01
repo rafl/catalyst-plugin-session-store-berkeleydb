@@ -62,7 +62,7 @@ sub get_session_data {
         my $status = $c->$_db->db_get($id, $data);
 
         confess "BerkeleyDB error while fetching data: $BerkeleyDB::Error ($status)"
-          if $status;
+          if $status && $status != DB_NOTFOUND;
     });
 
     if($data) {
